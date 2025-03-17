@@ -1,19 +1,17 @@
-import React from 'react';
-
-const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-    return (
-        <div className="flex justify-center">
-            {Array.from({ length: totalPages }, (_, index) => (
-                <button
-                    key={index}
-                    onClick={() => onPageChange(index + 1)}
-                    className={`mx-1 p-2 ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}
-                >
-                    {index + 1}
-                </button>
-            ))}
-        </div>
-    );
-};
+const Pagination = ({ currentPage, onPageChange }) => (
+  <div className="flex justify-center mt-4 space-x-4">
+    <button
+      onClick={() => onPageChange(currentPage - 1)}
+      disabled={currentPage === 1}
+      className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
+    >
+      Previous
+    </button>
+    <span className="text-white mt-2">{currentPage}</span>
+    <button onClick={() => onPageChange(currentPage + 1)} className=" px-4 py-2 bg-blue-500 text-white rounded ">
+      Next
+    </button>
+  </div>
+);
 
 export default Pagination;
